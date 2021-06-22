@@ -1,0 +1,75 @@
+<table>
+        <thead>
+            <tr class="column-header">
+                <th class="sel" scope="col">&#10004</th>
+                <th scope="col" class="p_details">More Details</th>
+                <% if (details.products.length > 0) { %>
+                <% Object.keys(details.names).forEach((attribute) => { %>
+                <th scope="col" class="p_<%=attribute%>">
+                    <%= details.names[attribute] %>
+                    <% if (details.sortable[attribute]) { %>
+                    <br>
+                    <i class="up arw" id="up_reviews" url="<%=data.url%>" value="<%= details.sortable[attribute]%>"></i>
+                    <i class="down arw" id="down_reviews" url="<%= data.url%>" value="<%= details.sortable[attribute]%>"></i>
+                    <% } %>
+                </th>
+                <% }) %>
+                <% } %>
+            </tr>
+        </thead>
+        <tbody>
+            <td class="col-xs-3 column-filter" class="sel">
+                <input type="checkbox" id=product_button_all />
+            </td>
+            <td class="col-xs-3 column-filter p_details"></td>
+            <% if (details.products.length > 0) { %>
+            <% Object.keys(details.names).forEach((attribute) => { %>
+            <td class="col-xs-3 column-filter p_<%=attribute%>">
+                <input class="form-control addMain" type="text" placeholder="Enter title" />
+            </td>
+            <% }) %>
+            <% } %>
+            <div class="main_list">
+                <% details.products.forEach((product) => { %>
+                <tr class="even">
+                    <td class="sel">
+                        <p>
+                            <input type="checkbox" id="pb_<%= product.Id %> " class="product_cb" />
+                            <label for="product_button"></label>
+                        </p>
+                    </td>
+                    <td class="p_details" id="myBtn_0">
+                        <div class="container">
+                            <button id="button_details" onclick="modal_open(<%= JSON.stringify(product) %>)"></button>
+                        </div>
+                    </td>
+                    <% if (product.ImageUrl) { %>
+                    <td class="p_ImageUrl">
+                        <a href="<%= product.PDP %>" target="_blank">
+                            <img class="list_image" src="<%= product.ImageUrl %>" alt="No image found" class="image-center" class="list-group-itemo">
+                            <% } else { %>
+                    <td class="p_ImageUrl td_alert">
+                        <% } %>
+                        </a>
+                    </td>
+                    <% Object.keys(product).forEach((attribute) => { %>
+                    <% if (attribute != "ImageUrl") { %>
+                    <% if (product[attribute]) { %>
+                    <td class="flow p_<%= [attribute] %> ">
+                        <% if (typeof product[attribute] != "object") { %>
+                        <%= product[attribute] %>
+                        <% } else { %>
+                        <% product[attribute].forEach((value) => { %>
+                        <%= value %><br>
+                        <% }) %>
+                        <% } %>
+                        <% } else { %>
+                    <td class="p_<%= attribute %> td_alert">-
+                        <% } %>
+                    </td>
+                    <% } %>
+                    <% }) %>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>

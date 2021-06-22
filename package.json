@@ -1,0 +1,28 @@
+{
+  "name": "vh2019-djs",
+  "version": "1.0.0",
+  "description": "Vilnius Hackathon - DJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "11.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bazaarvoice/vh2019-djs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bazaarvoice/vh2019-djs/issues"
+  },
+  "homepage": "https://github.com/bazaarvoice/vh2019-djs#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}

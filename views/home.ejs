@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<% include includes/header.ejs %>
+<body>
+    <!-- Modal -->
+    <% include includes/modal.ejs %>
+    <h1 style="text-align: center; font-size: 40px">Catalog UI Hackathon Demo</h1>
+    <h4 style="text-align: center; font-size: 16px">Built by Danielius, Jonas and Simonas (LTU)</h4>
+    <% include includes/selections.ejs %>
+
+    <% if (details.products) { %>
+        <% if (details.products.length > 0) { %>
+            <div class="center">
+                <p>Page <%= data.page %> out of <%= Math.ceil(details.TotalResults/details.Limit) %> <br>
+                (<%=  details.Limit* data.page - (details.Limit-details.products.length)%> out of <%= details.TotalResults %> products)</p>
+                <!-- Top Pagination-->
+                <% include includes/pagination.ejs %>
+            </div>
+            <!-- Column controls -->
+            <% include includes/column_controls.ejs %>
+            <!-- Product Table-->
+            <% include includes/product_table.ejs %>
+            <!-- Bottom Pagination -->
+            <div class="center"><% include includes/pagination.ejs %></div>
+            <div class="center">
+                <input style="width:50px" id="btn_p_details" class="button-sw button-list" type="button" value="&uarr;" onclick="scroll_to_Top()">
+            </div>
+        <% } else { %>
+            <% if (data.client) { %>
+                <h1 style="text-align: center; font-size: 40px">No products found for given query!</h1>
+            <% } %>
+        <% } %>
+    <% } %>
+</body>
+</html>

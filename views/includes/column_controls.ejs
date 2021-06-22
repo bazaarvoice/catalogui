@@ -1,0 +1,19 @@
+<div class="center" id="first_details">
+    <div class="container">
+        <ul class="ks-cboxtags">
+            <li>
+                <input type="checkbox" id="btn_p_details" checked onclick="HideColumn($('.p_details'),$(this))" value="Details">
+                <label for="btn_p_details">Details</label>
+            </li>
+            <% if (details.products.length > 0) { %>
+            <% Object.keys(details.names).forEach((attribute) => { %>
+            <li>
+                <input type="checkbox" id="btn_p_<%= attribute %>" checked onclick="HideColumn($('.p_<%= attribute %>'),$(this))" value="<%= details.names[attribute] %> ">
+                <label for="btn_p_<%= attribute %>">
+                    <%= details.names[attribute] %></label>
+            </li>
+            <% }) %>
+            <% } %>
+        </ul>
+    </div>
+</div>

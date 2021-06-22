@@ -1,0 +1,14 @@
+<div class="pagination">
+    <% if (data.page && data.page !=1) { %>
+    <a class="active" href="<%= data.url %>&page=<%=parseInt(data.page) - 1 %>">&laquo;</a>
+    <% } else { %>
+    <a type="button" class="pagination" disabled>&laquo;</a>
+    <% } %>
+    <% if (data.page && data.page != Math.ceil(details.TotalResults/details.Limit)) { %>
+    <a class="active" href="<%= data.url %>&page=<%=parseInt(data.page) +1%>">&raquo;</a>
+    <% } else if(data.page){ %>
+    <a type="button" class="pagination" disabled>&raquo;</a>
+    <% } else { %>
+    <a type="button" class="pagination active" href="<%= data.url %>&page=2">&raquo;</a>
+    <% } %>
+</div>

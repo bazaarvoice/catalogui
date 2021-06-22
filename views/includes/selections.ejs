@@ -1,0 +1,62 @@
+<div id="options">
+    <form action="/" class="">
+        <div id="client_data_fields">
+            <div id="client_data_fields_client">
+                <label class="env" for="cname">Client</label>
+                <input placeholder="Enter Client Name" type="text" name="client" id="cname" value="<%= data.client %>">
+            </div>
+            <div id="client_data_fields_env">
+                <fieldset id="env" class="environment_select">
+                    <div class="toggle">
+                        <input type="radio" name="env" value="stg" id="stg">
+                        <label class="env" for="stg">Staging</label>
+                        <input type="radio" name="env" value="prod" id="prod">
+                        <label class="env" for="prod">Production</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="client_data_fields_ai">
+                <div id="client_data_fields_active">
+                    <input class="inp-cbxm" id="cbxm1" type="checkbox" name="filter_ac" value="act_true" />
+                    <label class="cbxm active_top" for="cbxm1">
+                        <span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                        <span>Active</span></label>
+                </div>
+                <div id="client_data_fields_inactive">
+                    <input class="inp-cbxm" id="cbxm2" type="checkbox" name="filter_in" value="act_false" />
+                    <label class="cbxm inactive_top" for="cbxm2">
+                        <span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                        <span>Inactive</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <% Object.keys(details.filters.content).forEach((attribute) => { %>
+            <fieldset id="<%= details.filters.content[attribute][0] %>" class="content_count">
+                <div class="toggle">
+                    <p class="radi">
+                        <%= attribute %>
+                    </p>
+                    <% Object.keys(details.filters.types).forEach((type) => { %>
+                    <input type="radio" name="filter_<%= details.filters.content[attribute][0] %>" value="<%= details.filters.content[attribute] + type %>" id="<%= details.filters.content[attribute] + type %>">
+                    <label for="<%= details.filters.content[attribute] + type %>">
+                        <%= details.filters.types[type] %></label>
+                    <% }) %>
+                    <input type="radio" name="filter_<%= details.filters.content[attribute][0] %>" value="<%= details.filters.content[attribute] %>" id="<%= details.filters.content[attribute] %>">
+                    <label for="<%= details.filters.content[attribute] %>">Any Number</label>
+                </div>
+            </fieldset>
+            <% }) %>
+        </div>
+        <input type="search" name="search" placeholder="What are you looking for?" class="search form__input">
+        <input type="submit" value="Find products" class="find_button">
+    </form>
+</div>
