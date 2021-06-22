@@ -1,0 +1,15 @@
+.dockerignore
+
+.git
+.gitignore
+.gitmodules
+**/.gitignore
+
+*.md
+.vscode
+
+Dockerfile
+Makefile
+Makefile.version
+
+deploy/

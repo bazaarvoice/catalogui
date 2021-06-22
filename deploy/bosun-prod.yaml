@@ -1,0 +1,43 @@
+bosun:
+  team: systemsintegrationteam
+  gitrepo: catalogui
+  buildFQDN: true
+  vpc: prod
+
+container:
+  repository: 468552248569.dkr.ecr.us-east-1.amazonaws.com/catalogui
+  tag: TAG_PLACEHOLDER
+  port: 8080
+  replicaCount: 1
+  livenessProbe:
+    httpGet:
+      port: 8080
+      path: /
+    initialDelaySeconds: 10
+  readinessProbe:
+    httpGet:
+      port: 8080
+      path: /
+  podAnnotations:
+    iam.amazonaws.com/role:  arn:aws:iam::468552248569:user/dantanavicius
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 1024m
+  class: private
+  tlsIssuer: letsencrypt-environment-subdomain
+  host: "catalogui"
+
+serviceAccount:
+  writablefs: true
+
+data:
+  proxy-body-size: "100Mi"
+
+resources:
+  requests:
+    cpu: 1
+    memory: 1000Mi
+  limits:
+    cpu: 2
+    memory: 2000Mi
